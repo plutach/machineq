@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.corners.dao.StationConfigMapper">
+	
+	<select id="getSensorLevel" resultType="java.lang.Integer">
+		select level_val from tbstationlevel		
+			where station_id = #{stationId}
+			  and site_id = #{siteId}
+			  and level_cd = 'LVL00001'
+			  and sensor_cd = #{sensorCode}	
+    </select>
+    
+    <select id="getDefaultAction" resultType="java.lang.String">
+    	select default_action from tbstation 
+    	where station_id = #{stationId}
+    	  and site_id = #{siteId}   	
+    </select>
+    
+    <select id="getReportInfo" resultType="hashmap">
+    	select report_interval, report_scale, report_event from tbsite 
+    	where site_id = #{siteId}   	
+    </select>
+    
+    <select id="GetStation"></select>
+    
+    
+</mapper>

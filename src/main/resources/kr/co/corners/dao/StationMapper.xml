@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.corners.dao.StationMapper">
+
+	<resultMap id="ResultMap" type="kr.co.corners.model.StationInfo">
+        <result column="station_id" property="stationId" />
+        <result column="site_id" property="siteId" />
+        <result column="coordi_id" property="coordiId" />
+        <result column="machineq_device_id" property="deviceEui" />
+    </resultMap>
+    
+    <!-- 스테이션 ID로 Site ID 가져오기 -->
+    <select id="getStationInfo" resultMap="ResultMap">
+        SELECT station_id, site_id, coordi_id FROM tbstation 
+                 WHERE station_sn = #{stationSN}
+    </select>
+   
+    <select id="getDeviceEUI" resultMap="ResultMap">
+       Select station_sn FROM tbstation
+       WHERE machineq_device_id = #{deviceEUI}
+        
+    </select>
+
+</mapper>
