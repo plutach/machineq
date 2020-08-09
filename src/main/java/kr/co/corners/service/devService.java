@@ -71,7 +71,7 @@ public class devService{
 	public ResponseEntity<String> ReciveMachineQData(String body) throws Exception{
 
 
-	 ObjectMapper mapper = new ObjectMapper();
+     ObjectMapper mapper = new ObjectMapper();
      JsonNode node = mapper.readTree(body.toString()); 	
      String payload =  node.get("payload_hex").asText();  
      String deviceEUI =  node.get("DevEUI").asText(); 
@@ -110,7 +110,7 @@ public class devService{
 			
 	   if(command == 'R') {
 		   
-				LOGGER.info("Station SN: " + stationSn + " Command : " + command + " Payload Length : " + length );  
+         LOGGER.info("Station SN: " + stationSn + " Command : " + command + " Payload Length : " + length );  
 			
 	   
        //set deviceEUI
@@ -128,7 +128,7 @@ public class devService{
 		if( configModel == null)
 		{
 			configModel = new StationConfig(); 
-//		    configModel = stationConfigOp.getStationConfig(stationSn, nStationId, nSiteId);
+                        // configModel = stationConfigOp.getStationConfig(stationSn, nStationId, nSiteId);
 			configModel.setdeviceEUI(deviceEUI);
 			configModel.setPayload(payload);	
 		}
@@ -248,9 +248,7 @@ public class devService{
 			
 			LOGGER.info("Sent mqtt Station Event");
 			mqtt.SendStationEvent(nCoordiId, stationSn, statusModel);
-//			mqtt.SendActionStation(nCoordiId, stationSn, statusModel);
-	        
-		    
+		   
 		    try {
 		    	stationStatusDao.remove(statusModel);
 		    	stationStatusDao.add(statusModel);
@@ -289,15 +287,11 @@ public ResponseEntity<String> getDeviceData() throws Exception{
 	return null;
 }
 
-//public ResponseEntity<deviceInfo> SendMachineQData(String body){
-//public ResponseEntity<deviceInfo> SendMachineQData(deviceInfo model) {
+
 public ResponseEntity<deviceInfo> SendMachineQData(String payload, String targetPort, Boolean flushQueue, Boolean confirm) {
 
 	deviceInfo model = new deviceInfo();
-	
 	sendMQmsg("https://api.machineq.net/v1/devices/"+deviceEUI+"/message", payload,targetPort,flushQueue,confirm);
-//		sendMQmsg("https://api.machineq.net/v1/devices/"+deviceEUI+"/message", model);
-	
 	return new ResponseEntity<deviceInfo>(HttpStatus.OK); 
 }
 
@@ -334,21 +328,14 @@ public static String createRegex(String s) {
 }
 
 
-//public Object sendMQmsg(String url, String model) throws IOException{
-//public Object sendMQmsg(String url, deviceInfo model) throws IOException{
-
-	public Object sendMQmsg(String url, String payload, String targetPort, Boolean flushQueue,Boolean confirm) {
+public Object sendMQmsg(String url, String payload, String targetPort, Boolean flushQueue,Boolean confirm) {
 
 		HttpClient httpClient=getHttpClient();		
 		HttpPost post  = new HttpPost(url); 
- 
-//		TokenInfo tokenObj = jwttoken.get(this.clientId);
 		TokenInfo tokenObj = jwttoken.get(clientId);		
 		String t  = tokenObj.getToken();
 		
-	   //token expiration 
-		
-
+	        //token expiration 
 		post.addHeader("Authorization", t);
 		post.addHeader("Content-Type","application/json");
 
