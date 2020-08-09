@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-//import kr.co.corners.controller.mqcontroller;
 import kr.co.corners.model.TokenInfo;
 
 
@@ -16,7 +15,7 @@ public class JWTTokenSave {
 	
 	private final Logger logger = LoggerFactory.getLogger(JWTTokenSave.class);
 	
-//	private final static String KEY = "seung_yoon"; 
+//	private final static String KEY = "key_name"; 
 
 	@Resource(name="jwtTokenTemplate") 
 	private RedisTemplate<String,TokenInfo>redisTemplate;
@@ -35,11 +34,11 @@ public class JWTTokenSave {
 	{
 		try
 		{	
-			return redisTemplate.opsForValue().get(clientId);	        
+		return redisTemplate.opsForValue().get(clientId);	        
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+		e.printStackTrace();
 		}
 		return null;	
 	}
