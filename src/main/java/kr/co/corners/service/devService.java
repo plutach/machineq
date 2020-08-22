@@ -1,6 +1,5 @@
 package kr.co.corners.service;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -236,15 +235,6 @@ public class devService{
 			statusModel.setBu(beamUp);
 			statusModel.setBd(beamDown);
 			statusModel.setdeviceEUI(deviceEUI);
-			
-		/*	deviceInfo model = new deviceInfo();
-		    model.setDevEUI("70B3D53E6FFFFFD5");
-		    model.setPayload(payload);
-		    model.setTargetPort("2");
-		    model.setConfirm(true);
-		    model.setFlushQueue(false);
-			deviceInfoD.add(model);
-		  */
 			
 			LOGGER.info("Sent mqtt Station Event");
 			mqtt.SendStationEvent(nCoordiId, stationSn, statusModel);
