@@ -16,9 +16,6 @@ import javax.annotation.Resource;
 @Component
 public class MqttTaskScheduler 
 {
-   // private static final Logger logger = LoggerFactory.getLogger(MqttTaskScheduler.class);
-    
-    //private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     @Autowired
     MqttSender mqtt;
@@ -44,10 +41,6 @@ public class MqttTaskScheduler
 			}
 			        		
     		String deviceID = testDeviceEUI;
-    		//if( nCount  % 2 == 0)
-    		//{
-    		//	deviceID = testDeviceID2;
-    		//}
     		
     		int nCoordiID =(Integer)listOperations.index(deviceID, Constants.COORDI_ID);        	
         	int StationSn =(Integer)listOperations.index(deviceID, Constants.STATION_SN);    		
@@ -89,7 +82,6 @@ public class MqttTaskScheduler
         catch(Exception ex)
         {
         	ex.printStackTrace();
-        	//logger.info("Redis Data Not Exist!");
         }
     }
     
@@ -138,7 +130,6 @@ public class MqttTaskScheduler
 			else
 				model.setBd(0);
 			
-			//logger.info("Cron Task Send Device Request :: Execution Time - {}", dateTimeFormatter.format(LocalDateTime.now()) );
 			mqtt.SendActionStation(nCoordiID, StationSn, model);			
 		}
 		catch(Exception ex)
@@ -147,14 +138,4 @@ public class MqttTaskScheduler
 		}
 		
 	}
-	
-//	private HttpUtil httpUtil = new HttpUtil();	
-//	public void getMachineQLoginToken()
-//	{
-//		try {
-//			httpUtil.sendPost("https://api.machineq.net/v1/login", null, "{\"username\": \"seung_yoon\",\"password\": \"NbsHZO3O\"}");
-//		} catch (Exception e) {			
-//			e.printStackTrace();
-//		}
-//	}
 }
