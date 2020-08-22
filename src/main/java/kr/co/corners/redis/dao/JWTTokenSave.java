@@ -15,8 +15,6 @@ public class JWTTokenSave {
 	
 	private final Logger logger = LoggerFactory.getLogger(JWTTokenSave.class);
 	
-//	private final static String KEY = "key_name"; 
-
 	@Resource(name="jwtTokenTemplate") 
 	private RedisTemplate<String,TokenInfo>redisTemplate;
 
