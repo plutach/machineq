@@ -1,6 +1,5 @@
 package kr.co.corners.controller;
 
-//import org.hibernate.validator.internal.util.logging.Log_.logger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +33,6 @@ public class mqcontroller {
 	@Value("${machineq.server.url.common}")
     private String url;
 	
-	
-//	@Value("${machineq.testdevice}")
-//	private String devEUI;
-	
 	@Autowired 
 	tokenService tokenrequest; 
 
@@ -62,7 +57,6 @@ public class mqcontroller {
 	   		
 		return tokenrequest.getAccessTokenViaSpringSecurityOAuthClient(grantType, clientId, clientSecret);
 		
-		//return tokenrequest.oauthReq(grantType, clientId, clientSecret);
 	}
 	
 	
@@ -71,18 +65,6 @@ public class mqcontroller {
 	 * 로그인후 생성된 토큰을 사용하여야 함.
 	 * 
 	 * */
-//	@ResponseBody
-//	@RequestMapping(value="/v1/validate", method=RequestMethod.POST)
-//	public ResponseEntity<String> validate() throws Exception{
-//	
-//		TokenInfo tokenObj = tokenSave.get();
-//		
-//		if(tokenObj == null)
-//			LOGGER.info("Token NULL");
-//		else
-//			LOGGER.info("Token \"" +  tokenObj.getToken() +  "\"");
-//		return tokenrequest.validateToken(tokenObj);
-//	}
 	
 	/*login
 	 * 
@@ -140,27 +122,7 @@ public class mqcontroller {
        return devservice.SendMachineQData(Payload, TargetPort, Confirm, FlushQueue);
        }
     
-    /*
-    @ResponseBody
-	@RequestMapping(value="/{deviceEUI}", method=RequestMethod.POST)
 
-    public ResponseEntity<deviceInfo> sendMessagetoDevice(@PathVariable String deviceEUI, @RequestBody deviceInfo model) throws Exception{
-    		                                            
-    model.setDevEUI(deviceEUI);
-    return devservice.SendMachineQData(model);
-    }
-	*/
- 
-
-
-/*       
-    @ResponseBody
-	@RequestMapping(value="v1/devices/{deviceEUI}", method=RequestMethod.GET)
-	public ResponseEntity<String> getData(@PathVariable String deviceEUI) throws Exception{ 
-    	
-        return devservice.getDeviceData();
-	}    
- */
     
     
 
